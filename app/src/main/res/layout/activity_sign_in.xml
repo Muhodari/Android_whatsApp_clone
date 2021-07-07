@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".SignInActivity"
+
     android:background="@color/lightGrey"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".SignUpActivity"
-
-
     >
 
     <LinearLayout
@@ -37,17 +36,7 @@
             app:srcCompat="@drawable/ic_whatsapp"
             tools:ignore="VectorDrawableCompat" />
 
-        <EditText
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:ems="10"
-            android:hint="UserName"
-            android:inputType="textPersonName"
-            android:padding="9dp" />
+
 
         <EditText
             android:id="@+id/etEmail"
@@ -72,20 +61,20 @@
             android:padding="9dp" />
 
         <TextView
-            android:id="@+id/tvAlreadyAccount"
+            android:id="@+id/tvClickSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:gravity="right"
             android:padding="  "
-            android:text="Alread have Account" />
+            android:text="Click for SignUp" />
 
         <Button
-            android:id="@+id/btn_signUp"
+            android:id="@+id/btn_signIn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Sign Up" />
+            android:text="Sign In" />
 
         <LinearLayout
             android:layout_width="match_parent"
