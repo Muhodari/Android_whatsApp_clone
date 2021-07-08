@@ -77,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:gravity="right"
-            android:padding="  "
             android:text="Alread have Account" />
 
         <Button
