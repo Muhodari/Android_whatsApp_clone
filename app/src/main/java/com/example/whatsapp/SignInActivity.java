@@ -28,6 +28,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding =ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().hide();
 
 
         auth = FirebaseAuth.getInstance();
@@ -57,6 +58,14 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+// auto redirect to signup page after click on already have account
+  binding.tvClickSignUp.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+          Intent intent = new Intent(SignInActivity.this,SignUpActivity.class);
+          startActivity(intent);
+      }
+  });
 //===============================
   if(auth.getCurrentUser() !=null){
       Intent intent = new Intent(SignInActivity.this,MainActivity.class);

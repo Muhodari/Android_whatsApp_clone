@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -67,18 +68,24 @@ public class SignUpActivity extends AppCompatActivity {
                        Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                    }
-
-
-
-
-
-
                     }
                 });
 
 
             }
         });
+
+        // auto redirect to signup page after click on already have account
+        binding.tvAlreadyAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this,SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 }
