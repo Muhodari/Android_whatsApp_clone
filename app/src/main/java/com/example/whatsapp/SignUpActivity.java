@@ -42,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                    if(task.isSuccessful()){
-                       Users user = new Users("danger",binding.etEmail.getText().toString(),
+                       Users user = new Users(binding.etUserName.getText().toString(),binding.etEmail.getText().toString(),
                                binding.etPassword.getText().toString());
                        String id = task.getResult().getUser().getUid();
                        database.getReference().child("Users").child(id).setValue(user);
