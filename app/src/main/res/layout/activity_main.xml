@@ -18,6 +18,7 @@
         android:elevation="12dp"
         app:tabIndicator="@color/white"
         app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/white"
         app:tabMaxWidth="0dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
