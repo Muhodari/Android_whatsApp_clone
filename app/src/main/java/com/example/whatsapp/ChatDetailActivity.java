@@ -2,7 +2,9 @@ package com.example.whatsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.whatsapp.databinding.ActivityChatDetailBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +26,7 @@ public class ChatDetailActivity extends AppCompatActivity {
 
         //        receive other users data or message
 
+        getSupportActionBar().hide();
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
@@ -34,6 +37,16 @@ public class ChatDetailActivity extends AppCompatActivity {
 
         binding.userName.setText(userName);
         Picasso.get().load(profilePic).placeholder(R.drawable.ic_user).into(binding.profileImage);
+
+        // set back arrow
+        binding.backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(ChatDetailActivity.this,MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 
