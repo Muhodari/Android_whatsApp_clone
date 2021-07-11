@@ -44,6 +44,7 @@ Context context;
         holder.userName.setText(users.getUserName());
 
 
+//        send message to a user
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +53,7 @@ Context context;
                 intent.putExtra("userId",users.getUserId());
                 intent.putExtra("profilePic",users.getProfilepic());
                 intent.putExtra("userName",users.getUserName());
+
                 context.startActivity(intent);
 
 
