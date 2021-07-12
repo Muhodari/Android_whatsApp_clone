@@ -1,5 +1,6 @@
 package com.example.whatsapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -12,7 +13,10 @@ import com.example.whatsapp.Models.MessageModel;
 import com.example.whatsapp.databinding.ActivityChatDetailBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -67,6 +71,32 @@ public class ChatDetailActivity extends AppCompatActivity {
 
         final String senderRoom = senderId + receiveId;
         final String receiveRoom = receiveId + senderId;
+
+
+//  receive data to database
+        database.getReference().child("chats")
+                .child(senderRoom)
+                .addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        messageModels.clear();
+                       for(DataSnapshot snapshot1:snapshot.getChildren()){
+                           MessageModel model = snapshot1.getValue(MessageModel.class);
+                           messageModels.add(model);
+                       }
+                       chatAdapter.notifyDataSetChanged();
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
 
 //  send message
    binding.send.setOnClickListener(new View.OnClickListener() {
