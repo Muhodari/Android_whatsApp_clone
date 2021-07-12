@@ -38,9 +38,10 @@
         android:layout_width="59dp"
         android:layout_height="38dp"
         android:text="12:00pm"
-        tools:layout_editor_absoluteX="235dp"
         tools:layout_editor_absoluteY="48dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
