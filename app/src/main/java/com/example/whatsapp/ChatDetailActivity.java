@@ -1,15 +1,20 @@
 package com.example.whatsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.whatsapp.Adapters.ChatAdapter;
+import com.example.whatsapp.Models.MessageModel;
 import com.example.whatsapp.databinding.ActivityChatDetailBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class ChatDetailActivity extends AppCompatActivity {
 
@@ -30,7 +35,7 @@ public class ChatDetailActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        String senderId= auth.getUid();
+       final String senderId= auth.getUid();
         String receiveId = getIntent().getStringExtra("userId");
         String userName = getIntent().getStringExtra("userName");
         String profilePic = getIntent().getStringExtra("profilePic");
@@ -44,9 +49,18 @@ public class ChatDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(ChatDetailActivity.this,MainActivity.class);
                 startActivity(intent);
-
             }
         });
+
+
+ final ArrayList<MessageModel> messageModels= new ArrayList<>();
+
+ final ChatAdapter chatAdapter = new ChatAdapter(messageModels,this);
+ binding.chatRecyclerView.setAdapter(chatAdapter);
+
+ LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+ binding.chatRecyclerView.setLayoutManager(layoutManager);
+
 
 
 
