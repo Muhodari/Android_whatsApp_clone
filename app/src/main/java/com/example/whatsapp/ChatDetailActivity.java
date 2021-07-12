@@ -10,11 +10,13 @@ import android.view.View;
 import com.example.whatsapp.Adapters.ChatAdapter;
 import com.example.whatsapp.Models.MessageModel;
 import com.example.whatsapp.databinding.ActivityChatDetailBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ChatDetailActivity extends AppCompatActivity {
 
@@ -62,6 +64,43 @@ public class ChatDetailActivity extends AppCompatActivity {
  binding.chatRecyclerView.setLayoutManager(layoutManager);
 
 
+
+        final String senderRoom = senderId + receiveId;
+        final String receiveRoom = receiveId + senderId;
+
+//  send message
+   binding.send.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           String message = binding.etMessage.getText().toString();
+           final MessageModel model = new MessageModel(senderId,message);
+           model.setTimestamp(new Date().getTime());
+           binding.etMessage.setText("");
+
+           database.getReference().child("chats")
+                   .child(senderRoom)
+                   .push()
+                   .setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+               @Override
+               public void onSuccess(Void aVoid) {
+              database.getReference().child("chats")
+                      .child(receiveRoom)
+                      .push()
+                      .setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                  @Override
+                  public void onSuccess(Void aVoid) {
+
+
+                  }
+              });
+
+               }
+           });
+
+
+       }
+   });
 
 
 
