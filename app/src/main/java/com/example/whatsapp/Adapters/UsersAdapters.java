@@ -14,6 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.whatsapp.ChatDetailActivity;
 import com.example.whatsapp.Models.Users;
 import com.example.whatsapp.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,6 +47,37 @@ Context context;
         Users users= list.get(position);
         Picasso.get().load(users.getProfilepic()).placeholder(R.drawable.ic_user).into(holder.image);
         holder.userName.setText(users.getUserName());
+
+
+
+//        get last message
+        FirebaseDatabase.getInstance().getReference().child("chats")
+                .child(FirebaseAuth.getInstance().getUid() + users.getUserId())
+                .orderByChild("timestamp")
+                .limitToLast(1)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   if(snapshot.hasChildren()){
+                       for(DataSnapshot snapshot1:snapshot.getChildren()) {
+                           holder.lastMessage.setText(snapshot1.child("message").getValue().toString());
+
+                       }
+
+                   }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+
 
 
 //        send message to a user
