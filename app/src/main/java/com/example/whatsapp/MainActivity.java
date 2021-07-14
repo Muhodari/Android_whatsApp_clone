@@ -72,7 +72,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.settings:
-                Toast.makeText(MainActivity.this, "Settings clicked", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this,SettingsActivity.class);
+                startActivity(i);
+
+
                 break;
             case  R.id.logout:
                 auth.signOut();
