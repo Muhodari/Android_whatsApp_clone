@@ -66,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 HashMap<String, Object> obj= new HashMap<>();
                 obj.put("userName",username);
-                obj.put("about",status);
+                obj.put("status",status);
 
                 database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
                         .updateChildren(obj);
@@ -88,6 +88,12 @@ public class SettingsActivity extends AppCompatActivity {
                                 .load(users.getProfilepic())
                                 .placeholder(R.drawable.ic_user)
                                 .into(binding.profileImage);
+
+
+                        binding.etStatus.setText(users.getStatus());
+                        binding.etUserName.setText(users.getUserName());
+
+
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
