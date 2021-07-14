@@ -23,6 +23,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class SettingsActivity extends AppCompatActivity {
 
     ActivitySettingsBinding binding;
@@ -56,6 +58,26 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
+        binding.saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            String status=binding.etStatus.getText().toString();
+            String username=binding.etUserName.getText().toString();
+
+                HashMap<String, Object> obj= new HashMap<>();
+                obj.put("userName",username);
+                obj.put("about",status);
+
+                database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                        .updateChildren(obj);
+
+
+
+            }
+        });
+
+
+
         database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -66,14 +88,12 @@ public class SettingsActivity extends AppCompatActivity {
                                 .load(users.getProfilepic())
                                 .placeholder(R.drawable.ic_user)
                                 .into(binding.profileImage);
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
+
 
         binding.plus.setOnClickListener(new View.OnClickListener() {
             @Override
