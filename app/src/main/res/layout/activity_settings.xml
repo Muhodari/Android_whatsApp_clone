@@ -146,12 +146,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:drawableLeft="@android:drawable/ic_lock_lock"
+            android:drawableLeft="@drawable/ic_info_button"
             android:drawablePadding="15dp"
             android:text="About us"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:drawableTint="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/textView5"
@@ -159,12 +160,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:drawableLeft="@android:drawable/ic_lock_lock"
+            android:drawableLeft="@drawable/ic_group"
             android:drawablePadding="15dp"
             android:text="Invite a Friend"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:drawableTint="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/textView6"
@@ -172,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:drawableLeft="@android:drawable/ic_popup_reminder"
+            android:drawableLeft="@drawable/ic_notification"
             android:drawablePadding="15dp"
             android:text="Notification"
             android:textColor="@color/black"
@@ -186,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:drawableLeft="@android:drawable/ic_menu_help"
+            android:drawableLeft="@drawable/ic_question"
             android:drawablePadding="15dp"
             android:text="Help"
             android:textColor="@color/black"
